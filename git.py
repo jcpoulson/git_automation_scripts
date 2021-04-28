@@ -18,12 +18,12 @@ def set_remote():
     subprocess.call(["git", "push", "-u", "origin", "main"])
 
 
-def commit():
+def local_commit():
     message = input("\nType in your commit message: ")
     commit_message = f'{message}'
 
-    run("commit", "-am", commit_message)
-    run("push", "-u", "origin", "main")
+    subprocess.call(["git", "add", "*"])
+    subprocess.call(["git", "commit", "-m", commit_message])
 
 
 def branch():
@@ -47,8 +47,8 @@ def branch():
 
 def main():
 
-    choices = 'set remote, commit, branch'
-    print("Commands to use: " + choices)
+    choices = 'set remote, local commit, branch'
+    print("\nCommands to use: " + choices)
 
     choose_command = input("Type in the command you want to use: ")
     choose_command = choose_command.lower()
@@ -56,8 +56,8 @@ def main():
     if choose_command == "set remote":
         set_remote()
 
-    elif choose_command == "commit":
-        commit()
+    elif choose_command == "local commit":
+        local_commit()
 
     elif choose_command == "branch":
         branch()
