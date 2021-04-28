@@ -26,28 +26,18 @@ def local_commit():
     subprocess.call(["git", "commit", "-m", commit_message])
 
 
-def branch():
-    branch = input("\nType in the name of the branch you want to make: ")
-    br = f'{branch}'
+def remote_commit():
+    message = input("\nType in your commit message: ")
+    commit_message = f'{message}'
 
-    run("checkout", "-b", br)
-
-    choice = input("\nDo you want to push the branch right now to GitHub? (y/n): ")
-    choice = choice.lower()
-
-    if choice == "y":
-        run("push", "-u", "origin", br)
-
-    elif choice == "n":
-        print("\nOkay, goodbye!\n")
-
-    else:
-        print("\nInvalid command! Use y or n.\n")
+    subprocess.call(["git", "add", "*"])
+    subprocess.call(["git", "commit", "-m", commit_message])
+    subprocess.call(["git", "push", "-u", "origin", "main"])
 
 
 def main():
 
-    choices = 'set remote, local commit, branch'
+    choices = 'set remote, local commit, remote commit'
     print("\nCommands to use: " + choices)
 
     choose_command = input("Type in the command you want to use: ")
@@ -59,8 +49,8 @@ def main():
     elif choose_command == "local commit":
         local_commit()
 
-    elif choose_command == "branch":
-        branch()
+    elif choose_command == "remote commit":
+        remote_commit()
 
     else:
         print("\nNot a valid command!")
