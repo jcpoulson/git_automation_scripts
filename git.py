@@ -1,8 +1,5 @@
 import subprocess
 
-def run(*args):
-    return subprocess.check_call(['git'] + list(args))
-
 def set_remote():
     print("\nYou will be asked for the user first and then the repository name\n")
 
@@ -24,7 +21,7 @@ def commit():
     commit_message = f'{message}'
 
     run("commit", "-am", commit_message)
-    run("push", "-u", "origin", "master")
+    run("push", "-u", "origin", "main")
 
 
 def branch():
