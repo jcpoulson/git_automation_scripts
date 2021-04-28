@@ -12,7 +12,7 @@ def set_remote():
     subprocess.call(["git", "add", "*"])
     subprocess.call(["git", "commit", "-m", "default commit"])
     subprocess.call(["git", "branch", "-M", "main"])
-    subprocess.Popen(['git', 'remote', 'add', 'origin' "https://github.com/" + __user__ + "/" + __repo__ + ".git"])
+    subprocess.call(['git', 'remote', 'add', 'origin' "https://github.com/" + __user__ + "/" + __repo__ + ".git"])
     subprocess.call(["git", "push", "-u", "-f", "origin", "main"])
 
 
