@@ -4,15 +4,17 @@ def set_remote():
     print("\nYou will be asked for the user first and then the repository name\n")
 
     user = input("User: ")
-    __user__ = f'{user}'
+    __user__ = user
     repo = input("Repository: ")
-    __repo__ = f'{repo}'
+    __repo__ = repo
+
+    link = "https://github.com/{}/{}.git".format(__user__, __repo__)
 
     subprocess.call(["git", "init"])
     subprocess.call(["git", "add", "*"])
     subprocess.call(["git", "commit", "-m", "default commit"])
     subprocess.call(["git", "branch", "-M", "main"])
-    subprocess.call(['git', 'remote', 'add', 'origin' "https://github.com/" + __user__ + "/" + __repo__ + ".git"])
+    subprocess.call(['git', 'remote', 'add', 'origin' "https://github.com/{}.git".format(link)])
     subprocess.call(["git", "push", "-u", "origin", "main"])
 
 
