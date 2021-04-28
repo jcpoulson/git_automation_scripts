@@ -34,10 +34,28 @@ def remote_commit():
     subprocess.call(["git", "commit", "-m", commit_message])
     subprocess.call(["git", "push", "-u", "origin", "main"])
 
+def clone():
+
+    print("\nYou will be asked for the user first and then the repository name\n")
+
+    user = input("User: ")
+    __user__ = f'{user}'
+    repo = input("Repository: ")
+    __repo__ = f'{repo}'
+
+    print("\nChoose the local path for your clone.")
+    local = input("Local path: ")
+    local_path = f'{local}'
+
+    subprocess.Popen(['git', 'clone', "https://github.com/" + __user__ + "/" + __repo__ + ".git", local_path])
+
+def log():
+    subprocess.call(["git", "log"])
+
 
 def main():
 
-    choices = 'set remote, local commit, remote commit'
+    choices = 'set remote, local commit, remote commit, clone, log'
     print("\nCommands to use: " + choices)
 
     choose_command = input("Type in the command you want to use: ")
@@ -51,6 +69,12 @@ def main():
 
     elif choose_command == "remote commit":
         remote_commit()
+    
+    elif choose_command == "clone":
+        clone()
+
+    elif choose_command == "log":
+        log()
 
     else:
         print("\nNot a valid command!")
